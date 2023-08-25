@@ -66,6 +66,16 @@ class App(customtkinter.CTk):
         self.tabview.tab("Normal & Segmentation View").grid_rowconfigure(0, weight=1)
         self.tabview.tab("Camera View").grid_columnconfigure(0, weight=1)
         self.tabview.tab("Camera View").grid_rowconfigure(1, weight=1)
+        # self.tabview.tab("All").grid_columnconfigure(0, weight=1)     # split to 3 screens
+        # self.tabview.tab("All").grid_columnconfigure(1, weight=1)
+        # self.tabview.tab("All").grid_columnconfigure(2, weight=1)
+        # self.tabview.tab("All").grid_rowconfigure(0, weight=1)
+        
+        self.tabview.tab("All").grid_columnconfigure(0, weight=1)       # split to 6 screens
+        self.tabview.tab("All").grid_columnconfigure(1, weight=1)
+        self.tabview.tab("All").grid_columnconfigure(2, weight=1)
+        self.tabview.tab("All").grid_rowconfigure(0, weight=1)
+        self.tabview.tab("All").grid_rowconfigure(1, weight=1)
         
             # Create textbox
         self.textbox = customtkinter.CTkTextbox(self.tabview.tab("Home"))
@@ -73,28 +83,59 @@ class App(customtkinter.CTk):
             # Create Normal View's video player
         self.video_player_n = TkinterVideo(self.tabview.tab("Normal View"))
         self.video_player_n.grid(row=0, column=0, sticky="nsew")
-        self.video_player_n.load(".\\assets\Los Angeles 720p - California Glow.mp4")
+        self.video_player_n.load(".\\assets\output_video_original.mp4")
             # Create Framesx2 for Noraml & Segmentation View's video players
-        self.video_frame_l = customtkinter.CTkFrame(self.tabview.tab("Normal & Segmentation View"), corner_radius=0)
-        self.video_frame_l.grid(row=0, column=0, sticky="nsew")
-        self.video_frame_l.grid_rowconfigure(0, weight=1)
-        self.video_frame_l.grid_columnconfigure(0, weight=1)
+        self.video_frame_ns_l = customtkinter.CTkFrame(self.tabview.tab("Normal & Segmentation View"), corner_radius=0)
+        self.video_frame_ns_l.grid(row=0, column=0, sticky="nsew")
+        self.video_frame_ns_l.grid_rowconfigure(0, weight=1)
+        self.video_frame_ns_l.grid_columnconfigure(0, weight=1)
         # self.video_frame_l.grid_columnconfigure(1, weight=1)
         
-        self.video_frame_r = customtkinter.CTkFrame(self.tabview.tab("Normal & Segmentation View"), corner_radius=0)
-        self.video_frame_r.grid(row=0, column=1, sticky="nsew")
-        self.video_frame_r.grid_rowconfigure(0, weight=1)
-        self.video_frame_r.grid_columnconfigure(0, weight=1)
+        self.video_frame_ns_r = customtkinter.CTkFrame(self.tabview.tab("Normal & Segmentation View"), corner_radius=0)
+        self.video_frame_ns_r.grid(row=0, column=1, sticky="nsew")
+        self.video_frame_ns_r.grid_rowconfigure(0, weight=1)
+        self.video_frame_ns_r.grid_columnconfigure(0, weight=1)
             
             # Create Noraml & Segmentation View's video players
-        self.video_player_ns_n = TkinterVideo(self.video_frame_l)
+        self.video_player_ns_n = TkinterVideo(self.video_frame_ns_l)
         self.video_player_ns_n.grid(row=0, column=0, sticky="nsew")
-        self.video_player_ns_n.load(".\\assets\Los Angeles 720p - California Glow.mp4")
+        self.video_player_ns_n.load(".\\assets\output_video_original.mp4")
         
-        self.video_player_ns_s = TkinterVideo(self.video_frame_r)
+        self.video_player_ns_s = TkinterVideo(self.video_frame_ns_r)
         self.video_player_ns_s.grid(row=0, column=0, sticky="nsew")
-        self.video_player_ns_s.load(".\\assets\Segmentation_for_Autonomous_Driving.mp4")
+        self.video_player_ns_s.load(".\\assets\output_video_mask.mp4")
         # self.video_player.load(".\\assets\Segmentation_for_Autonomous_Driving.mp4")
+        
+            # Create Framesx3 for All View's video players
+        self.video_frame_a_l = customtkinter.CTkFrame(self.tabview.tab("All"), corner_radius=0)
+        self.video_frame_a_l.grid(row=1, column=0, sticky="nsew")
+        self.video_frame_a_l.grid_rowconfigure(0, weight=1)
+        self.video_frame_a_l.grid_columnconfigure(0, weight=1)
+        # self.video_frame_l.grid_columnconfigure(1, weight=1)
+        
+        self.video_frame_a_m = customtkinter.CTkFrame(self.tabview.tab("All"), corner_radius=0)
+        self.video_frame_a_m.grid(row=1, column=2, sticky="nsew")
+        self.video_frame_a_m.grid_rowconfigure(0, weight=1)
+        self.video_frame_a_m.grid_columnconfigure(0, weight=1)
+        
+        self.video_frame_a_r = customtkinter.CTkFrame(self.tabview.tab("All"), corner_radius=0, width=600, height=400)
+        self.video_frame_a_r.configure(height=300, width=600)
+        self.video_frame_a_r.grid(row=0, column=1, sticky="nsew")
+        self.video_frame_a_r.grid_rowconfigure(0, weight=1)
+        self.video_frame_a_r.grid_columnconfigure(0, weight=1)
+        # self.video_frame_a_r.place(x=340,y=140)
+            # Create All View's video players
+        self.video_player_a_n = TkinterVideo(self.video_frame_a_l)
+        self.video_player_a_n.grid(row=0, column=0, sticky="nsew")
+        self.video_player_a_n.load(".\\assets\output_video_original.mp4")
+        
+        self.video_player_a_m = TkinterVideo(self.video_frame_a_m)
+        self.video_player_a_m.grid(row=0, column=0, sticky="nsew")
+        self.video_player_a_m.load(".\\assets\output_video_mask.mp4")
+        
+        self.video_player_a_c = TkinterVideo(self.video_frame_a_r)
+        self.video_player_a_c.grid(row=0, column=0, sticky="nsew")
+        self.video_player_a_c.load(".\\assets\output_video_combined.mp4")
         
         # Camera
         # self.camera_frame = ttk.LabelFrame(self.tabview.tab("Camera View"), text="Camera Feed")
@@ -153,13 +194,20 @@ class App(customtkinter.CTk):
         if self.tabview.get() == 'Normal & Segmentation View':
             self.video_player_ns_n.play()
             self.video_player_ns_s.play()
-        else:
+        elif self.tabview.get() == 'Normal View':
             self.video_player_n.play()
+        else:
+            self.video_player_a_n.play()
+            self.video_player_a_m.play()
+            self.video_player_a_c.play()
     
     def stop_button_event(self):
         self.video_player_n.stop()
         self.video_player_ns_n.stop()
         self.video_player_ns_s.stop()
+        self.video_player_a_n.stop()
+        self.video_player_a_m.stop()
+        self.video_player_a_c.stop()
     
     # Open a file dialog box and allow the user to select a video file to load into the video player
     def load_button_event(self):
