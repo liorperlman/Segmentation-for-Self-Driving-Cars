@@ -88,6 +88,7 @@ class App(customtkinter.CTk):
         
         self.textbox = customtkinter.CTkTextbox(self.tabview.tab("Home"))
         self.textbox.grid(row=0, column=0, sticky="nsew")
+        # self.html_page = tk.html_page()
     
     # Create Normal View's video player
     def create_video_players(self):
@@ -182,7 +183,7 @@ class App(customtkinter.CTk):
         # self.sidebar_button_3.configure(state="disabled", text="Disabled CTkButton")
         self.appearance_mode_optionemenu.set("Dark")
         self.scaling_optionemenu.set("100%")
-        self.textbox.insert("0.0", "Welcome to TerrainVisionX\n\n" + "Here's gonna be readme or instructions guide.\n\n")
+        self.textbox.insert("0.0", "Welcome to the Segmentation for Self-Driving Cars project!\n\n" + "This repository contains code and resources for training a deep learning U-Net model for image segmentation and creating a graphical user interface using Tkinter to demonstrate the model's performance. Image segmentation plays a crucial role in enabling self-driving cars to perceive and understand their surroundings.\n\n" + "The goal of this project is to develop an image segmentation model capable of identifying and labeling different objects within images relevant to self-driving cars. Image segmentation is vital for tasks such as identifying pedestrians, vehicles, road lanes, and other obstacles.\n\n")
         self.textbox.configure(state='disabled')   
     
     def open_input_dialog_event(self):
